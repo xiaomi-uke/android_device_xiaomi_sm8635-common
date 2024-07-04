@@ -1,6 +1,9 @@
 # Audio
 audio.offload.min.duration.secs=30
 
+# Bluetooth
+bluetooth.device_id.vendor_id=0x001D
+
 # Camera
 persist.vendor.camera.gesture.emoji.support=1
 
