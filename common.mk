@@ -212,6 +212,7 @@ PRODUCT_PACKAGES += \
 
 # Overlay
 PRODUCT_PACKAGES += \
+    DeviceAsWebcamOverlay \
     FrameworkResOverlayCommon \
     LineageSDKCommon \
     SystemUIOverlayCommon \
