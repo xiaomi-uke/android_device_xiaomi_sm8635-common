@@ -216,6 +216,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     DeviceAsWebcamOverlay \
     FrameworkResOverlayCommon \
+    NcmTetheringOverlay \
     LineageSDKCommon \
     SystemUIOverlayCommon \
     SettingsOverlayCommon \
