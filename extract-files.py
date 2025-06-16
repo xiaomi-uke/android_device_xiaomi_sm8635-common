@@ -165,6 +165,13 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libqcc_sdk.so',
     ): blob_fixup()
         .add_needed('libbinder_shim.so'),
+    (
+        'odm/lib64/libaudioroute_ext.so',
+        'vendor/lib64/libagm.so',
+        'vendor/lib64/libkaraokepal.so',
+        'vendor/lib64/libmcs.so',
+    ): blob_fixup()
+        .replace_needed('libaudioroute.so', 'libaudioroute-v34.so'),
     'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
         .regex_replace('.+DOLBY.+\n', ''),
     'vendor/lib64/libmicamera_hal_core.so': blob_fixup()
