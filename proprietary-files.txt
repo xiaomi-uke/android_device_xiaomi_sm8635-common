@@ -117,7 +117,7 @@ vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 # Audio
 odm/lib64/libaudioroute_ext.so
 odm/lib64/libawcal.so;DUMMY_SHARED_LIB
-odm/lib64/libcrussp.so;DISABLE_CHECKELF
+odm/lib64/libcrussp.so
 odm/lib64/libvoipspacespeech.so
 odm/lib64/libvpnr_enroll_pad.so;FIX_SONAME
 odm/lib64/libvpnr_pad.so;FIX_SONAME
@@ -139,8 +139,8 @@ vendor/lib64/libPeripheralStateUtils.so
 vendor/lib64/libVoiceSdk.so
 vendor/lib64/lib_misound_asc.so
 vendor/lib64/libadm.so
-vendor/lib64/libagm.so;DISABLE_CHECKELF
-vendor/lib64/libarmemlog.so;DISABLE_CHECKELF
+vendor/lib64/libagm.so
+vendor/lib64/libarmemlog.so
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudiocloudctrl.so
 vendor/lib64/libaudiofeaturestats.so
@@ -149,18 +149,18 @@ vendor/lib64/libcapiv2svarnnvendor.so
 vendor/lib64/libcapiv2udk7vendor.so
 vendor/lib64/libcapiv2uvvendor.so
 vendor/lib64/libdsd2pcm.so
-vendor/lib64/libkaraokepal.so;DISABLE_CHECKELF
-vendor/lib64/libmcs.so;DISABLE_CHECKELF
+vendor/lib64/libkaraokepal.so
+vendor/lib64/libmcs.so
 vendor/lib64/libmis6.so
 vendor/lib64/libmisoundsa.so
 vendor/lib64/libmisoundsa_fx.so
-vendor/lib64/libqtigefar.so;DISABLE_CHECKELF
+vendor/lib64/libqtigefar.so
 vendor/lib64/libresampler.so
 vendor/lib64/libtensorflowlite_c.so
 vendor/lib64/libultrasound_notify.so
 vendor/lib64/libvui_dmgr.so
 vendor/lib64/libvui_dmgr_client.so
-vendor/lib64/libvui_intf.so;DISABLE_CHECKELF
+vendor/lib64/libvui_intf.so
 vendor/lib64/vendor.qti.hardware.pal@1.0-impl.so
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
@@ -1175,7 +1175,7 @@ vendor/lib64/libqc2audio_base.so
 vendor/lib64/libqc2audio_basecodec.so
 vendor/lib64/libqc2audio_core.so
 vendor/lib64/libqc2audio_hooks.so
-vendor/lib64/libqc2audio_hwaudiocodec.so;DISABLE_CHECKELF
+vendor/lib64/libqc2audio_hwaudiocodec.so
 vendor/lib64/libqc2audio_platform.so
 vendor/lib64/libqc2audio_swaudiocodec.so
 vendor/lib64/libqc2audio_utils.so

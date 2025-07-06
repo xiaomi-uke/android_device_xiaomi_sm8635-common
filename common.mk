@@ -37,8 +37,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.1-impl \
     android.hardware.audio.effect@7.0-impl \
-    android.hardware.soundtrigger@2.3-impl \
-    vendor.qti.hardware.AGMIPC@1.0-impl
+    android.hardware.soundtrigger@2.3-impl
 
 PRODUCT_PACKAGES += \
     audio.primary.default \
@@ -49,15 +48,12 @@ PRODUCT_PACKAGES += \
     libagm_compress_plugin \
     libagm_mixer_plugin \
     libagm_pcm_plugin \
-    libagmmixer \
     libaudiochargerlistener \
-    libats \
     libbatterylistener \
     libcustomva_intf \
     libfmpal \
     libhfp_pal \
     libhotword_intf \
-    libpalclient \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
