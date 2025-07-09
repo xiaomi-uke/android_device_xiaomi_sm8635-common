@@ -165,10 +165,6 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libqcc_sdk.so',
     ): blob_fixup()
         .add_needed('libbinder_shim.so'),
-    'system_ext/bin/wfdservice64': blob_fixup()
-        .add_needed('libwfdservice_shim.so'),
-    'system_ext/lib64/libwfdservice.so': blob_fixup()
-        .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V4-cpp.so'),
     'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
         .regex_replace('.+DOLBY.+\n', ''),
     'vendor/lib64/libmicamera_hal_core.so': blob_fixup()
