@@ -143,7 +143,6 @@ vendor.gatekeeper.is_security_level_spu=0
 persist.backup.ntpServer=0.pool.ntp.org
 
 # Graphics
-debug.egl.hw=0
 debug.mdpcomp.logs=0
 graphics.gpu.profiler.support=true
 ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.pineapple.api34
@@ -207,7 +206,6 @@ debug.sf.earlyGl.app.duration=13666666
 debug.sf.earlyGl.sf.duration=10500000
 debug.sf.enable_advanced_sf_phase_offset=1
 debug.sf.enable_gl_backpressure=1
-debug.sf.hw=0
 debug.sf.latch_unsignaled=0
 debug.sf.late.app.duration=13666666
 debug.sf.late.sf.duration=10500000
