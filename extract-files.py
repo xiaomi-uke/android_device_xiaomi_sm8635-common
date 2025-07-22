@@ -158,6 +158,13 @@ blob_fixups: blob_fixups_user_type = {
        'vendor/etc/media_codecs_muyu.xml',
     ): blob_fixup()
         .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
+    (
+        'vendor/bin/qcc-vendor',
+        'vendor/bin/xtra-daemon',
+        'vendor/lib64/libcne.so',
+        'vendor/lib64/libqcc_sdk.so',
+    ): blob_fixup()
+        .add_needed('libbinder_shim.so'),
     'system_ext/bin/wfdservice64': blob_fixup()
         .add_needed('libwfdservice_shim.so'),
     'system_ext/lib64/libwfdservice.so': blob_fixup()
@@ -169,6 +176,7 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
+        .add_needed('libbinder_shim.so')
         .add_needed('libhidlbase_shim.so'),
     'vendor/etc/ueventd.rc' : blob_fixup()
         .add_line_if_missing('\n# Charger\n/sys/class/qcom-battery     night_charging            0660    system  system')
