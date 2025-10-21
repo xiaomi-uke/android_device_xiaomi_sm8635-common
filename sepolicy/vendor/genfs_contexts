@@ -4,10 +4,6 @@ genfscon sysfs /class/qcom-battery    u:object_r:vendor_sysfs_qcom_battery:s0
 # Camera
 genfscon sysfs /module/camera/parameters/ife_mqs_node1    u:object_r:vendor_sysfs_camera:s0
 
-# Extcon
-genfscon sysfs /devices/platform/soc/88e0000.qcom,msm-eud/extcon     u:object_r:vendor_sysfs_graphics:s0
-genfscon sysfs /devices/platform/soc/soc:qcom,msm-ext-disp/extcon    u:object_r:vendor_sysfs_graphics:s0
-
 # Perf
 genfscon proc /perflock_records    u:object_r:vendor_proc_perflock_records:s0
 
