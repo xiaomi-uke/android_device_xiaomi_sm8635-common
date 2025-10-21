@@ -140,6 +140,7 @@ vendor/lib64/libVoiceSdk.so
 vendor/lib64/lib_misound_asc.so
 vendor/lib64/libadm.so
 vendor/lib64/libagm.so
+vendor/lib64/libagmmixer.so
 vendor/lib64/libarmemlog.so
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudiocloudctrl.so
