@@ -153,7 +153,7 @@ DEVICE_MANIFEST_FILE := \
     $(COMMON_PATH)/configs/vintf/manifest.xml
 
 # Vendor security patch
-BOOT_SECURITY_PATCH := 2025-07-01
+BOOT_SECURITY_PATCH := 2025-09-01
 VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 
 # Verified Boot
