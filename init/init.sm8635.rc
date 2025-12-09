@@ -23,10 +23,13 @@ on post-fs-data
     chown system system /sys/class/backlight/DP2-backlight/brightness
     chown system system /sys/class/backlight/DP2-backlight/max_brightness
 
-on property:persist.sys.parts.pen=*
-    exec /vendor/bin/xiaomi-pen ${persist.sys.parts.pen}
-
 service touch_report_debug /odm/bin/touch_report_debug
+    class main
+    user root
+    group system
+    oneshot
+
+service vendor.xiaomi_pen /vendor/bin/xiaomi-pen
     class main
     user root
     group system
