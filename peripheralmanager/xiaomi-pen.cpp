@@ -14,7 +14,7 @@
 
 #define SET_CUR_VALUE 0
 #define TOUCH_PEN_MODE 20
-#define TOUCH_PEN_VALUE 18
+#define TOUCH_PEN_VALUE 19
 #define TOUCH_MAGIC 'T'
 #define TOUCH_DEV_PATH "/dev/xiaomi-touch"
 #define TOUCH_ID 0
