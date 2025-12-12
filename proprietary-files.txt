@@ -981,7 +981,6 @@ vendor/etc/seccomp_policy/gnss@2.0-xtra-daemon.policy
 vendor/etc/seccomp_policy/gnss@2.0-xtwifi-client.policy
 vendor/etc/apdr.conf
 vendor/etc/batching.conf
-vendor/etc/gps.conf
 vendor/etc/lowi.conf
 vendor/etc/sap.conf
 vendor/etc/sec_config
