@@ -234,6 +234,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     XiaomiParts
 
+# Pen
+PRODUCT_PACKAGES += \
+    XiaomiPen
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti
