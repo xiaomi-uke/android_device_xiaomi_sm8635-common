@@ -1417,10 +1417,6 @@ vendor/lib64/vendor.qti.hardware.alarm-V1-ndk.so
 vendor/bin/hw/vendor.qti.psiclient@1.0-service
 vendor/etc/init/vendor.qti.psiclient@1.0-service.rc
 
-# Protobuf
-vendor/lib64/libprotobuf-cpp-full-21.7.so
-vendor/lib64/libprotobuf-cpp-lite-21.7.so
-
 # QCC
 system_ext/bin/qccsyshal_aidl-service
 system_ext/etc/init/vendor.qti.qccsyshal_aidl-service.rc
