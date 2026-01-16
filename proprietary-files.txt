@@ -117,7 +117,13 @@ vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 # Audio
 odm/lib64/libaudioroute_ext.so
 odm/lib64/libawcal.so;DUMMY_SHARED_LIB
+odm/lib64/libcorn.so
 odm/lib64/libcrussp.so
+odm/lib64/libmace.so
+odm/lib64/libmars.so
+odm/lib64/libonnxruntime.so
+odm/lib64/libscd.so
+odm/lib64/libspacespeech_sdk.so
 odm/lib64/libvoipspacespeech.so
 odm/lib64/libvpnr_enroll_pad.so;FIX_SONAME
 odm/lib64/libvpnr_pad.so;FIX_SONAME
@@ -278,6 +284,7 @@ odm/lib64/liblocalFlickerDet.so
 odm/lib64/libmiStereoCalibLib_qual.so
 odm/lib64/libmiai_deblur.so
 odm/lib64/libmiaio_head_seg.so
+odm/lib64/libmialgo_aio_seg.so
 odm/lib64/libmialgo_ie_capture.so
 odm/lib64/libmialgo_sd.so
 odm/lib64/libmialgo_utils.so
@@ -1684,6 +1691,7 @@ odm/etc/touch/stylus_game_config.json
 odm/etc/vintf/manifest/vendor.xiaomi.hw.touchfeature-service.xml
 odm/etc/init.panel_info.sh
 odm/lib64/libtensorflowlite_touch_c.so
+odm/lib64/libtouchreport.so
 odm/lib64/libtouchsensor.so
 vendor/lib64/vendor.xiaomi.hw.touchfeature-V1-ndk_platform.so
 
