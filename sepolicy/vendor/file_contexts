@@ -41,6 +41,7 @@
 
 # Pen
 /vendor/bin/xiaomi-pen               u:object_r:xiaomi_pen_exec:s0
+/vendor/bin/init.pen.events.sh       u:object_r:vendor_pen_events_exec:s0
 
 # QRTR
 /(vendor|system/vendor)/bin/qrtr-lookup    u:object_r:vendor_qrtr_exec:s0

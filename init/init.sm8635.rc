@@ -23,8 +23,21 @@ on post-fs-data
     chown system system /sys/class/backlight/DP2-backlight/brightness
     chown system system /sys/class/backlight/DP2-backlight/max_brightness
 
+service vendor.pen-events /vendor/bin/init.pen.events.sh
+    class late_start
+    user root
+    group root system input
+    disabled
+    oneshot
+
 service vendor.xiaomi_pen /vendor/bin/xiaomi-pen
     class main
     user root
     group system
     oneshot
+
+on property:sys.boot_completed=1
+    start vendor.pen-events
+
+on property:persist.pen.events.disabled=true
+    start vendor.pen-events

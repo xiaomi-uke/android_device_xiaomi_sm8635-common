@@ -16,3 +16,9 @@ prebuilt_etc {
     sub_dir: "init",
     vendor: true,
 }
+
+sh_binary {
+    name: "init.pen.events.sh",
+    src: "init.pen.events.sh",
+    vendor: true,
+}

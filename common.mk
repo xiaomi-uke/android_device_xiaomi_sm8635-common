@@ -172,6 +172,7 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
+    init.pen.events.sh \
     init.qcom.recovery.rc \
     init.sm8635.rc
 

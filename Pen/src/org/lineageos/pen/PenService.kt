@@ -21,6 +21,7 @@ import android.database.ContentObserver
 import android.hardware.input.InputManager
 import android.os.Handler
 import android.os.IBinder
+import android.os.SystemProperties
 import android.os.UEventObserver
 import android.provider.Settings
 import android.provider.Settings.System.PEAK_REFRESH_RATE
@@ -141,12 +142,6 @@ class PenService : Service() {
         )
     }
 
-    private fun disablePenEvents() {
-        for (id in inputManager.inputDeviceIds) {
-            if (isXiaomiPenDevice(id)) inputManager.disableInputDevice(id)
-        }
-    }
-
     private fun isXiaomiPenDevice(id: Int): Boolean {
         val inputDevice = inputManager.getInputDevice(id) ?: return false
         return inputDevice.getVendorId() == 34 && inputDevice.getProductId() == 19840
@@ -160,11 +155,12 @@ class PenService : Service() {
         if (isPenConnected) {
             Settings.System.putString(contentResolver, PEAK_REFRESH_RATE, "120.0")
             Settings.System.putString(contentResolver, MIN_REFRESH_RATE, "120.0")
-            disablePenEvents()
+            setPenEvents("true")
             if (!lastOverrideRefreshRateStatus) registerOverrideRefreshRate()
         } else if (!isPenConnected && lastOverrideRefreshRateStatus) {
             Settings.System.putString(contentResolver, PEAK_REFRESH_RATE, "0.0")
             Settings.System.putString(contentResolver, MIN_REFRESH_RATE, "0.0")
+            setPenEvents("false")
             if(lastOverrideRefreshRateStatus) unregisterOverrideRefreshRate()
         }
     }
@@ -213,6 +209,10 @@ class PenService : Service() {
         lastOverrideRefreshRateStatus = true
         contentResolver.registerContentObserver(Settings.System.getUriFor(PEAK_REFRESH_RATE), false, peakRefreshRateSettingsObserver)
         handler.post { peakRefreshRateSettingsObserver.onChange(true) }
+    }
+
+    private fun setPenEvents(isDisabled: String) {
+        SystemProperties.set("persist.pen.events.disabled", isDisabled)
     }
 
     private fun unregisterOverrideRefreshRate() {
