@@ -171,9 +171,9 @@ PRODUCT_PACKAGES += \
     xiaomi.system.hypsys.common-service
 
 # Init
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.sm8635.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.sm8635.rc \
-    $(LOCAL_PATH)/init/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc
+PRODUCT_PACKAGES += \
+    init.qcom.recovery.rc \
+    init.sm8635.rc
 
 # IPA
 PRODUCT_PACKAGES += \
