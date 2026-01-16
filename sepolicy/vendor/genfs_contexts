@@ -5,6 +5,9 @@ genfscon sysfs /class/qcom-battery    u:object_r:vendor_sysfs_qcom_battery:s0
 genfscon sysfs /module/camera/parameters/cam_cci_io_protect    u:object_r:vendor_sysfs_camera:s0
 genfscon sysfs /module/camera/parameters/ife_mqs_node1         u:object_r:vendor_sysfs_camera:s0
 
+# Keyboard
+genfscon sysfs /devices/virtual/keyboard/keypad/keyboard_status_param    u:object_r:sysfs_keyboard_status:s0
+
 # Perf
 genfscon proc /perflock_records    u:object_r:vendor_proc_perflock_records:s0
 

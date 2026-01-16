@@ -9,4 +9,4 @@ allow tp_report_debug proc_tp_file:file { read write open };
 allow tp_report_debug self:capability sys_nice;
 
 rw_dir_file(tp_report_debug, input_device)
-set_prop(tp_report_debug, vendor_tp_debug_prop)
+set_prop(tp_report_debug, vendor_touch_hostprocess_prop)
