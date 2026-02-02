@@ -2,4 +2,4 @@
 
 Currently supported devices
 - Xiaomi Pad 7 Pro (muyu)
-- Xiaomi Pad 7 (uke)
+- Xiaomi Pad 7 / Poco Pad X1 (uke)
