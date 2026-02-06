@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
-## are from Xiaomi Pad 7 Pro (OS3.0.4.0.WOYMIXM).
+## are from Xiaomi Pad 7 Pro (OS3.0.7.0.WOYMIXM).
 
 # ACDBs
 vendor/etc/acdbdata/cliffs_mtp/MTP_cliffs_acdb_cal.acdb
@@ -794,6 +794,7 @@ vendor/etc/init/init.qti.graphics.rc
 vendor/etc/clstc_config_library.xml
 vendor/lib64/libclstc_algorithm_adapter.so
 vendor/lib64/libclstc_gcp_adapter.so
+vendor/lib64/libclstc_tm.so
 vendor/lib64/libdisplayqos.so
 vendor/lib64/libdisplayskuutils.so
 vendor/lib64/libintervmipc.so
@@ -1683,6 +1684,7 @@ odm/bin/hw/vendor.xiaomi.hw.touchfeature-service
 odm/bin/touch_report_debug
 odm/bin/toucheventcheck
 odm/etc/init/vendor.xiaomi.hw.touchfeature-service.rc
+odm/etc/touch/Pencil_Posture.xml
 odm/etc/touch/stylus_game_config.json
 odm/etc/vintf/manifest/vendor.xiaomi.hw.touchfeature-service.xml
 odm/etc/init.panel_info.sh
