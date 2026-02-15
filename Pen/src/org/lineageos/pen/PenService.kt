@@ -67,7 +67,7 @@ class PenService : Service() {
         }
     }
 
-    private val peakRefreshRateSettingsObserver by lazy {
+    private val refreshRateSettingsObserver by lazy {
         object : ContentObserver(handler) {
             override fun onChange(selfChange: Boolean) {
                 super.onChange(selfChange)
@@ -153,14 +153,12 @@ class PenService : Service() {
         } != null
 
         if (isPenConnected) {
-            Settings.System.putString(contentResolver, PEAK_REFRESH_RATE, "120.0")
-            Settings.System.putString(contentResolver, MIN_REFRESH_RATE, "120.0")
-            setPenEvents("true")
+            Settings.System.putFloat(contentResolver, PEAK_REFRESH_RATE, 120f)
+            Settings.System.putFloat(contentResolver, MIN_REFRESH_RATE, 120f)
             if (!lastOverrideRefreshRateStatus) registerOverrideRefreshRate()
         } else if (!isPenConnected && lastOverrideRefreshRateStatus) {
-            Settings.System.putString(contentResolver, PEAK_REFRESH_RATE, "0.0")
-            Settings.System.putString(contentResolver, MIN_REFRESH_RATE, "0.0")
-            setPenEvents("false")
+            Settings.System.putFloat(contentResolver, PEAK_REFRESH_RATE, 120f)
+            Settings.System.putFloat(contentResolver, MIN_REFRESH_RATE, 60f)
             if(lastOverrideRefreshRateStatus) unregisterOverrideRefreshRate()
         }
     }
@@ -207,8 +205,10 @@ class PenService : Service() {
     private fun registerOverrideRefreshRate() {
         if (lastOverrideRefreshRateStatus) return
         lastOverrideRefreshRateStatus = true
-        contentResolver.registerContentObserver(Settings.System.getUriFor(PEAK_REFRESH_RATE), false, peakRefreshRateSettingsObserver)
-        handler.post { peakRefreshRateSettingsObserver.onChange(true) }
+        contentResolver.registerContentObserver(Settings.System.getUriFor(PEAK_REFRESH_RATE), false, refreshRateSettingsObserver)
+        contentResolver.registerContentObserver(Settings.System.getUriFor(MIN_REFRESH_RATE), false, refreshRateSettingsObserver)
+        handler.post { refreshRateSettingsObserver.onChange(true) }
+        setPenEvents("true")
     }
 
     private fun setPenEvents(isDisabled: String) {
@@ -219,11 +219,12 @@ class PenService : Service() {
         if (!lastOverrideRefreshRateStatus) return
 
         try {
-            contentResolver.unregisterContentObserver(peakRefreshRateSettingsObserver)
+            contentResolver.unregisterContentObserver(refreshRateSettingsObserver)
         } catch (e: Exception) {
             Log.w(TAG, "Unregister content observer failed", e)
         } finally {
             lastOverrideRefreshRateStatus = false
+            setPenEvents("false")
         }
     }
 
