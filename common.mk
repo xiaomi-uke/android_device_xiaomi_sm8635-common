@@ -332,7 +332,6 @@ PRODUCT_COPY_FILES += \
 
 # Vendor service manager
 PRODUCT_PACKAGES += \
-    vndservice \
     vndservicemanager
 
 # WiFi
