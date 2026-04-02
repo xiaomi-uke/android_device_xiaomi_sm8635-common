@@ -222,6 +222,8 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libbinder_shim.so')
         .add_needed('libhidlbase_shim.so'),
+    'vendor/etc/init/hw/init.batterysecret.rc' : blob_fixup()
+        .regex_replace('group system system wakelock', 'group system system usb wakelock'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
