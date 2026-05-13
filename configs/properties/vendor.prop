@@ -85,9 +85,6 @@ ro.camerax.extensions.enabled=true
 # Chipset
 ro.soc.manufacturer=QTI
 
-# Dalvik
-dalvik.vm.dex2oat64.enabled=true
-
 # Display
 ro.vendor.displayfeature.dump=true
 vendor.display.comp_mask=0
