@@ -1,0 +1,35 @@
+type vendor_focus_pen_filter, domain;
+type vendor_focus_pen_filter_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(vendor_focus_pen_filter)
+
+# Read hidraw for Focus Pen HID reports
+allow vendor_focus_pen_filter hidraw_device:chr_file rw_file_perms;
+allow vendor_focus_pen_filter vendor_hidraw_device:chr_file rw_file_perms;
+
+# Create uinput device and inject events
+allow vendor_focus_pen_filter uhid_device:chr_file rw_file_perms;
+
+# Traverse /dev/uhid and /dev/hidraw* directories
+allow vendor_focus_pen_filter hidraw_device:dir search;
+allow vendor_focus_pen_filter uhid_device:dir search;
+
+# Allow access to /sys/devices/virtual/misc/uhid
+allow vendor_focus_pen_filter sysfs_uhid:dir search;
+allow vendor_focus_pen_filter sysfs_uhid:file r_file_perms;
+dontaudit vendor_focus_pen_filter sysfs_uhid:file write;
+
+# EVIOCGRAB the M80p touchscreen and read touch events
+allow vendor_focus_pen_filter input_device:chr_file rw_file_perms;
+allow vendor_focus_pen_filter input_device:dir search;
+
+# Read /proc/bus/input/devices to find event nodes
+allow vendor_focus_pen_filter proc:dir r_dir_perms;
+allow vendor_focus_pen_filter proc:file r_file_perms;
+
+# Read sysfs class hidraw uevents to find Focus Pen
+allow vendor_focus_pen_filter sysfs:dir r_dir_perms;
+allow vendor_focus_pen_filter sysfs:file r_file_perms;
+
+# Read system_pen_prop properties
+get_prop(vendor_focus_pen_filter, system_pen_prop)

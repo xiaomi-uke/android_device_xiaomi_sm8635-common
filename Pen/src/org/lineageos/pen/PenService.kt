@@ -144,7 +144,15 @@ class PenService : Service() {
 
     private fun isXiaomiPenDevice(id: Int): Boolean {
         val inputDevice = inputManager.getInputDevice(id) ?: return false
-        return inputDevice.getVendorId() == 34 && inputDevice.getProductId() == 19840
+        val vendorId = inputDevice.getVendorId()
+        val productId = inputDevice.getProductId()
+        val name = inputDevice.name ?: ""
+
+        val isXiaomiVendor = vendorId == 34 // 0x0022
+        val isXiaomiProductId = productId == 19840 || productId == 20609 || productId == 5081 // 19840 = 0x4D80, 20609 = 0x5081
+        val isXiaomiName = name.contains("Xiaomi Focus Pen", ignoreCase = true)
+
+        return (isXiaomiVendor && isXiaomiProductId) || isXiaomiName
     }
 
     private fun overridePeakRefreshRateIfNeeded() {
@@ -152,14 +160,31 @@ class PenService : Service() {
             return@firstOrNull isXiaomiPenDevice(it)
         } != null
 
+        val targetPeak = 120f
+        val targetMin = if (isPenConnected) 120f else 60f
+
+        val currentPeak = try {
+            Settings.System.getFloat(contentResolver, PEAK_REFRESH_RATE)
+        } catch (e: Exception) {
+            -1f
+        }
+        val currentMin = try {
+            Settings.System.getFloat(contentResolver, MIN_REFRESH_RATE)
+        } catch (e: Exception) {
+            -1f
+        }
+
+        if (currentPeak != targetPeak) {
+            Settings.System.putFloat(contentResolver, PEAK_REFRESH_RATE, targetPeak)
+        }
+        if (currentMin != targetMin) {
+            Settings.System.putFloat(contentResolver, MIN_REFRESH_RATE, targetMin)
+        }
+
         if (isPenConnected) {
-            Settings.System.putFloat(contentResolver, PEAK_REFRESH_RATE, 120f)
-            Settings.System.putFloat(contentResolver, MIN_REFRESH_RATE, 120f)
             if (!lastOverrideRefreshRateStatus) registerOverrideRefreshRate()
         } else if (!isPenConnected && lastOverrideRefreshRateStatus) {
-            Settings.System.putFloat(contentResolver, PEAK_REFRESH_RATE, 120f)
-            Settings.System.putFloat(contentResolver, MIN_REFRESH_RATE, 60f)
-            if(lastOverrideRefreshRateStatus) unregisterOverrideRefreshRate()
+            if (lastOverrideRefreshRateStatus) unregisterOverrideRefreshRate()
         }
     }
 

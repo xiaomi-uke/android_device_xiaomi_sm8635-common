@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2023 Paranoid Android
+ * Copyright (C) thanick49
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-License-Identifier: free to use idc
  */
 
 package com.xiaomi.settings.peripheral;
@@ -11,36 +11,74 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.input.InputManager;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.InputDevice;
 
 public class KeyboardUtilsService extends Service {
 
-    private static final String TAG = "XiaomiPartsKeyboardUtilsService";
-    private static final boolean DEBUG = true;
-
     private static InputManager mInputManager;
+
+    private final InputManager.InputDeviceListener mInputDeviceListener = new InputManager.InputDeviceListener() {
+        @Override
+        public void onInputDeviceAdded(int id) {
+            enableExternalDevicesIfNeeded(id);
+        }
+
+        @Override
+        public void onInputDeviceRemoved(int id) {
+        
+        }
+
+        @Override
+        public void onInputDeviceChanged(int id) {
+            enableExternalDevicesIfNeeded(id);
+        }
+    };
 
     @Override
     public void onCreate() {
         super.onCreate();
-        if (DEBUG) Log.d(TAG, "Creating service");
         if (mInputManager == null) {
             mInputManager = (InputManager) getSystemService(Context.INPUT_SERVICE);
         }
-        setKeyboardEnabled(false);
+        if (mInputManager != null) {
+            mInputManager.registerInputDeviceListener(mInputDeviceListener, null);
+            setKeyboardEnabled(false);
+            for (int id : mInputManager.getInputDeviceIds()) {
+                enableExternalDevicesIfNeeded(id);
+            }
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (DEBUG) Log.d(TAG, "onStartCommand");
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        if (DEBUG) Log.d(TAG, "onDestroy");
+        if (mInputManager != null) {
+            mInputManager.unregisterInputDeviceListener(mInputDeviceListener);
+        }
         super.onDestroy();
+    }
+
+    private void enableExternalDevicesIfNeeded(int id) {
+        if (mInputManager == null) return;
+        
+        InputDevice device = mInputManager.getInputDevice(id);
+
+        if (device != null && !device.isVirtual() && !device.isEnabled()) {
+            
+            if (!isDeviceXiaomiKeyboard(device)) {
+                int sources = device.getSources();
+                boolean isKeyboard = (sources & InputDevice.SOURCE_KEYBOARD) == InputDevice.SOURCE_KEYBOARD;
+                boolean isMouse = (sources & InputDevice.SOURCE_MOUSE) == InputDevice.SOURCE_MOUSE;
+                
+                if (isKeyboard || isMouse) {
+                    mInputManager.enableInputDevice(id);
+                }
+            }
+        }
     }
 
     @Override
@@ -49,24 +87,24 @@ public class KeyboardUtilsService extends Service {
     }
 
     public static void setKeyboardEnabled(boolean enabled) {
-        if (DEBUG) Log.d(TAG, "setKeyboardEnabled: " + enabled);
+        if (mInputManager == null) return;
+        
         for (int id : mInputManager.getInputDeviceIds()) {
-            if (isDeviceXiaomiKeyboard(id)) {
-                if (DEBUG) Log.d(TAG, "setKeyboardEnabled: Found Xiaomi Keyboard with id: " + id);
-                if (enabled) {
-                    if (DEBUG) Log.d(TAG, "setKeyboardEnabled: Enabling Xiaomi Keyboard");
+            InputDevice device = mInputManager.getInputDevice(id);
+            
+
+            if (isDeviceXiaomiKeyboard(device)) {
+                if (enabled && !device.isEnabled()) {
                     mInputManager.enableInputDevice(id);
-                } else {
-                    if (DEBUG) Log.d(TAG, "setKeyboardEnabled: Disabling Xiaomi Keyboard");
+                } else if (!enabled && device.isEnabled()) {
                     mInputManager.disableInputDevice(id);
                 }
             }
         }
     }
 
-    private static boolean isDeviceXiaomiKeyboard(int id) {
-        InputDevice inputDevice = mInputManager.getInputDevice(id);
-        return inputDevice.getVendorId() == 5593 && inputDevice.getProductId() == 163;
+    private static boolean isDeviceXiaomiKeyboard(InputDevice device) {
+        if (device == null) return false;
+        return device.getVendorId() == 5593 && device.getProductId() == 163;
     }
-
 }

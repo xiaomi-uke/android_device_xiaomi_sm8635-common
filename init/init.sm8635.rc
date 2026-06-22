@@ -36,8 +36,15 @@ service vendor.xiaomi_pen /vendor/bin/xiaomi-pen
     group system
     oneshot
 
+service vendor.focus-pen-filter /vendor/bin/xiaomi-focus-pen-filter
+    class late_start
+    user root
+    group root system input uhid
+    disabled
+
 on property:sys.boot_completed=1
     start vendor.pen-events
+    start vendor.focus-pen-filter
 
 on property:persist.pen.events.disabled=true
     start vendor.pen-events

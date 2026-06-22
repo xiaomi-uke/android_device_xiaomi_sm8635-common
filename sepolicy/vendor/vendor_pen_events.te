@@ -7,4 +7,5 @@ allow vendor_pen_events vendor_file:file rx_file_perms;
 allow vendor_pen_events proc:file r_file_perms;
 allow vendor_pen_events input_device:chr_file { rw_file_perms unlink };
 allow vendor_pen_events input_device:dir create_dir_perms;
+allow vendor_pen_events vendor_shell_exec:file rx_file_perms;
 allow vendor_pen_events vendor_toolbox_exec:file rx_file_perms;

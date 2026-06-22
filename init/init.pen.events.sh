@@ -1,7 +1,9 @@
 #!/system/bin/sh
 
-EVENT_NAME=$(awk 'BEGIN { RS=""; FS="\n" }
-     /Name="Xiaomi Focus Pen"/ {
+# Filter Focus Pen events through daemon
+
+EVENT_NAMES=$(awk 'BEGIN { RS=""; FS="\n" }
+     /Name="Xiaomi Focus Pen/ && !/Keyboard/ && !/Mouse/ {
          for (i=1; i<=NF; i++)
              if ($i ~ /Handlers=/) {
                  match($i, /event[0-9]+/)
@@ -9,5 +11,9 @@ EVENT_NAME=$(awk 'BEGIN { RS=""; FS="\n" }
              }
      }' /proc/bus/input/devices)
 
-[ -z "$EVENT_NAME" ] && exit
-rm /dev/input/$EVENT_NAME
+[ -z "$EVENT_NAMES" ] && exit
+
+# Delete the broken event node
+for event in $EVENT_NAMES; do
+    rm -f "/dev/input/$event"
+done

@@ -15,7 +15,8 @@ android_app {
         "androidx.core_core",
     ],
     required: [
-        "xiaomi-pen"
+        "xiaomi-pen",
+        "xiaomi-focus-pen-filter",
     ],
 }
 
@@ -25,4 +26,13 @@ cc_binary {
     srcs: [
         "xiaomi-pen.cpp",
     ],
+}
+
+cc_binary {
+    name: "xiaomi-focus-pen-filter",
+    vendor: true,
+    srcs: [
+        "xiaomi-focus-pen-filter.c",
+    ],
+    cflags: ["-Wall", "-Werror"],
 }

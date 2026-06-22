@@ -1,1 +1,5 @@
 hal_client_domain(mediacodec, hal_audio)
+hal_client_domain(mediacodec, hal_aidl_dms)
+
+# Explicitly grant binder call to Dolby HAL
+binder_call(mediacodec, hal_aidl_dms_default)
